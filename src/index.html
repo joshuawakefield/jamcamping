@@ -1,49 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- 
+    ===== JAMCAMPING - DIGITAL SHAKEDOWN STREET =====
+    Main HTML template for the JamCamping festival DIY project site.
+    
+    This file serves as the single-page application (SPA) foundation that contains:
+    - All semantic HTML structure for accessibility
+    - Meta tags for SEO and social media sharing
+    - Progressive Web App (PWA) configuration
+    - Festival-themed content sections organized as "stages"
+    
+    The site uses a unique "swipeable stages" navigation system where each
+    section represents a different area of a music festival (Main Stage,
+    Vendor Row, Chill Zone, etc.)
+    -->
+    
+    <!-- Basic document metadata -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Primary SEO meta tags - these are the foundation for search engine discovery -->
     <title>JamCamping - Digital Shakedown Street for Festival DIY</title>
     <meta name="description" content="The ultimate digital Shakedown Street for festival DIY projects. Swipe through legendary builds, cosmic knowledge, and festival magic. Make your campsite legendary.">
     
-    <!-- Festival Culture Meta -->
+    <!-- 
+    Festival Culture Meta Tags
+    These keywords target the specific communities we serve:
+    - Festival goers and music fans
+    - DIY enthusiasts and makers
+    - Jam band culture (Grateful Dead, Phish, etc.)
+    - Burning Man and psychedelic communities
+    -->
     <meta name="keywords" content="festival camping, DIY projects, grateful dead, phish, shakedown street, psychedelic camping, jam band culture, burning man, festival hacks">
+    
+    <!-- Theme color for mobile browsers - matches our primary festival orange -->
     <meta name="theme-color" content="#ff6b35">
     
-    <!-- Open Graph -->
+    <!-- 
+    Open Graph Protocol Tags
+    These control how the site appears when shared on social media platforms
+    like Facebook, Twitter, Discord, etc. Critical for viral marketing.
+    -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="JamCamping - Digital Shakedown Street">
     <meta property="og:description" content="Swipe through legendary festival builds and cosmic knowledge. Turn your campsite into a psychedelic paradise.">
-    <meta property="og:image" content="/images/og-festival.jpg">
+    <meta property="og:image" content="https://jamcamping.com/images/og-festival.jpg">
     <meta property="og:url" content="https://jamcamping.com">
     
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@JamCampingHQ">
-    <meta name="twitter:title" content="JamCamping - Digital Shakedown Street">
-    <meta name="twitter:description" content="Swipe through legendary festival builds and cosmic knowledge.">
-    <meta name="twitter:image" content="/images/twitter-card.jpg">
-    
-    <!-- Icons -->
-    <link rel="icon" type="image/x-icon" href="/icons/favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/manifest.json">
-    
-    <!-- Fonts -->
+    <!-- 
+    Font Loading Strategy
+    We preconnect to Google Fonts to reduce DNS lookup time, then load:
+    - Righteous: Display font for headers (festival poster aesthetic)
+    - Inter: Body font for readability across all devices
+    -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Righteous:wght@400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Preload critical resources -->
-    <link rel="preload" href="/data/projects.json" as="fetch" crossorigin>
-    <link rel="preload" href="/data/shop.json" as="fetch" crossorigin>
-    
-    <!-- CSS -->
+    <!-- Main stylesheet - contains all CSS custom properties and responsive design -->
     <link rel="stylesheet" href="css/style.css">
     
-    <!-- Structured Data -->
+    <!-- 
+    Structured Data for SEO
+    This JSON-LD tells search engines exactly what our site is about.
+    It enables rich snippets and better search result presentation.
+    The SearchAction allows Google to show a search box in results.
+    -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -60,57 +83,118 @@
     </script>
 </head>
 <body>
-    <!-- Skip Links for Accessibility -->
+    <!-- 
+    ===== ACCESSIBILITY FEATURES =====
+    Skip links allow keyboard and screen reader users to jump directly
+    to main content, bypassing navigation. Required for WCAG compliance.
+    -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
     
-    <!-- Festival Greeting Banner -->
+    <!-- 
+    ===== FESTIVAL GREETING BANNER =====
+    Dynamic greeting that changes based on time of day and user behavior.
+    Creates immediate connection with festival culture and community feeling.
+    Hidden by default, shown via JavaScript with personalized messages.
+    -->
     <div id="festivalGreeting" class="festival-greeting">
         <span class="greeting-text"></span>
+        <!-- Close button with proper ARIA label for accessibility -->
         <button class="greeting-close" aria-label="Close greeting">&times;</button>
     </div>
     
-    <!-- Header -->
+    <!-- 
+    ===== MAIN HEADER =====
+    Fixed header that stays visible during scrolling for easy navigation.
+    Contains the core navigation elements users need most frequently.
+    -->
     <header class="header" role="banner">
+        <!-- 
+        Hamburger Menu Toggle
+        Three-line icon that transforms into an X when menu is open.
+        ARIA attributes ensure screen readers understand the state.
+        -->
         <button id="menuToggle" class="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
             <span class="hamburger-line"></span>
         </button>
         
+        <!-- 
+        Site Logo/Brand
+        Uses circus tent emoji to reinforce festival theme.
+        Clicking returns to main stage (home).
+        -->
         <h1 class="logo">
             <span class="logo-icon">🎪</span>
             <span class="logo-text">JamCamping</span>
         </h1>
         
+        <!-- 
+        Header Action Buttons
+        Quick access to search and shopping cart functionality.
+        Cart badge shows item count and updates dynamically.
+        -->
         <div class="header-actions">
             <button id="searchToggle" class="header-btn" aria-label="Search projects" title="Search">
                 🔍
             </button>
             <button id="cartToggle" class="header-btn cart-btn" aria-label="View cart" title="Cart">
                 🛒
+                <!-- Cart badge - hidden when empty, shows count when items added -->
                 <span id="cartBadge" class="cart-badge" aria-hidden="true">0</span>
             </button>
         </div>
     </header>
 
-    <!-- Search Overlay -->
+    <!-- 
+    ===== SEARCH OVERLAY =====
+    Full-screen search interface that appears when search button is clicked.
+    Uses fuzzy matching to find projects even with typos or partial terms.
+    Results update in real-time as user types.
+    -->
     <div id="searchOverlay" class="search-overlay" role="dialog" aria-labelledby="search-title" aria-hidden="true">
         <div class="search-container">
+            <!-- Screen reader title for the search dialog -->
             <h2 id="search-title" class="sr-only">Search Projects</h2>
+            
             <div class="search-input-container">
+                <!-- 
+                Search Input Field
+                Placeholder text uses festival language to maintain brand voice.
+                aria-label provides additional context for screen readers.
+                -->
                 <input type="search" id="searchInput" class="search-input" placeholder="Search for legendary builds..." aria-label="Search projects">
+                
+                <!-- Close button to exit search mode -->
                 <button id="searchClose" class="search-close" aria-label="Close search">&times;</button>
             </div>
+            
+            <!-- 
+            Search Results Container
+            aria-live="polite" announces new results to screen readers
+            without interrupting their current reading.
+            -->
             <div id="searchResults" class="search-results" role="region" aria-live="polite"></div>
         </div>
     </div>
 
-    <!-- Navigation Menu -->
+    <!-- 
+    ===== NAVIGATION MENU =====
+    Slide-out menu that provides access to all site sections.
+    Uses festival terminology ("Festival Family") to reinforce community.
+    Each menu item corresponds to a different "stage" in our navigation system.
+    -->
     <nav id="navigationMenu" class="navigation-menu" role="navigation" aria-hidden="true">
         <div class="menu-header">
             <h2>🌈 Festival Family</h2>
             <button id="menuClose" class="menu-close" aria-label="Close menu">&times;</button>
         </div>
+        
+        <!-- 
+        Menu Items List
+        Each item has a data-stage attribute that corresponds to the stage index.
+        role="menubar" and role="menuitem" provide proper semantic structure.
+        -->
         <ul class="menu-list" role="menubar">
             <li role="none"><a href="#main-stage" role="menuitem" data-stage="0">🎪 Main Stage</a></li>
             <li role="none"><a href="#vendor-row" role="menuitem" data-stage="1">📚 Vendor Row</a></li>
@@ -118,13 +202,29 @@
             <li role="none"><a href="#submit-tent" role="menuitem" data-stage="3">✨ Submit Tent</a></li>
             <li role="none"><a href="#info-booth" role="menuitem" data-stage="4">📧 Info Booth</a></li>
         </ul>
+        
+        <!-- 
+        Menu Footer with Lyrical Quote
+        Grateful Dead lyric that reinforces the community and spiritual
+        aspects of festival culture. Changes the tone from commercial to communal.
+        -->
         <div class="menu-footer">
             <p class="menu-lyric">"We're just walking each other home..."</p>
         </div>
     </nav>
 
-    <!-- Stage Indicators -->
+    <!-- 
+    ===== STAGE INDICATORS =====
+    Visual navigation dots that show current position and allow direct navigation.
+    Similar to pagination but with a spatial metaphor (festival stages).
+    Each indicator represents one of the five main sections.
+    -->
     <div class="stage-indicators" role="tablist" aria-label="Festival stages">
+        <!-- 
+        Each stage indicator is a tab button with proper ARIA attributes.
+        The first one starts as active, others are inactive.
+        data-stage attribute links to the corresponding section.
+        -->
         <button class="stage-indicator active" role="tab" aria-selected="true" aria-controls="stage-0" data-stage="0" title="Main Stage">
             <span class="indicator-dot"></span>
             <span class="indicator-label">Main</span>
@@ -147,12 +247,23 @@
         </button>
     </div>
 
-    <!-- Main Content -->
+    <!-- 
+    ===== MAIN CONTENT AREA =====
+    Contains all the "stages" (sections) of the site.
+    Uses CSS transforms to create the swipeable navigation effect.
+    Each stage is a full-width section that slides in/out of view.
+    -->
     <main id="main-content" class="main-content" role="main">
         <div class="stage-container">
-            <!-- Stage 0: Main Stage (Projects) -->
+            <!-- 
+            ===== STAGE 0: MAIN STAGE (PROJECTS) =====
+            The primary content area where users browse DIY projects.
+            Contains hero project, quick actions, and filterable project grid.
+            This is where most conversions (sales) happen.
+            -->
             <section id="stage-0" class="stage main-stage active" role="tabpanel" aria-labelledby="main-stage-title" data-stage="main">
                 <div class="stage-content">
+                    <!-- Stage header with title and subtitle -->
                     <header class="stage-header">
                         <h1 id="main-stage-title" class="stage-title">
                             <span class="stage-emoji">🎪</span>
@@ -161,12 +272,25 @@
                         <p class="stage-subtitle">Legendary builds for legendary campsites</p>
                     </header>
 
-                    <!-- Hero Project -->
+                    <!-- 
+                    Hero Project Section
+                    Features the most popular/profitable project prominently.
+                    Shows both pricing tiers (GA and VIP) to maximize conversion.
+                    Uses festival language ("GA" = General Admission, "VIP" = premium).
+                    -->
                     <div class="hero-project" role="region" aria-labelledby="hero-project-title">
                         <div class="hero-project-content">
+                            <!-- Large emoji serves as eye-catching visual -->
                             <div class="hero-project-emoji" aria-hidden="true">🏛️</div>
+                            
                             <h2 id="hero-project-title" class="hero-project-title">Monkey Hut Shade Palace</h2>
                             <p class="hero-project-description">Build the ultimate festival shade structure that'll be the envy of the entire campground</p>
+                            
+                            <!-- 
+                            Pricing Display
+                            Shows both tiers to give users choice and increase perceived value.
+                            Specific prices create urgency and decision-making clarity.
+                            -->
                             <div class="hero-project-prices">
                                 <span class="price-label">GA Build:</span>
                                 <span class="price-value">$95</span>
@@ -174,6 +298,13 @@
                                 <span class="price-label">VIP Build:</span>
                                 <span class="price-value">$219</span>
                             </div>
+                            
+                            <!-- 
+                            Call-to-Action Buttons
+                            Two options increase conversion by giving choice.
+                            data-project and data-build attributes link to cart system.
+                            Festival-themed button text maintains brand voice.
+                            -->
                             <div class="hero-project-actions">
                                 <button class="btn-festival btn-primary" data-project="1" data-build="functional">
                                     🎸 Get GA Build
@@ -185,7 +316,12 @@
                         </div>
                     </div>
 
-                    <!-- Quick Actions -->
+                    <!-- 
+                    Quick Actions Section
+                    Provides discovery mechanisms for users who don't know what they want.
+                    "Surprise Me" and "Random Build" encourage exploration.
+                    "Get Inspired" shows motivational content to increase engagement.
+                    -->
                     <div class="quick-actions" role="region" aria-label="Quick actions">
                         <button id="surpriseMe" class="quick-action-btn">
                             <span class="action-emoji">🎲</span>
@@ -201,10 +337,21 @@
                         </button>
                     </div>
 
-                    <!-- Project Grid -->
+                    <!-- 
+                    Projects Section
+                    Main content area with filtering and project grid.
+                    Projects are loaded dynamically from JSON data.
+                    -->
                     <div class="projects-section">
                         <div class="section-header">
                             <h2>🌈 All Projects</h2>
+                            
+                            <!-- 
+                            Filter Controls
+                            Allow users to narrow down projects by category and difficulty.
+                            Uses festival language ("All Vibes" instead of "All Categories").
+                            Emojis make categories instantly recognizable.
+                            -->
                             <div class="filter-controls">
                                 <select id="categoryFilter" class="filter-select" aria-label="Filter by category">
                                     <option value="all">All Vibes</option>
@@ -223,19 +370,35 @@
                                 </select>
                             </div>
                         </div>
+                        
+                        <!-- 
+                        Projects Grid Container
+                        Populated dynamically by JavaScript from projects.json.
+                        role="grid" provides semantic structure for screen readers.
+                        -->
                         <div id="projectsGrid" class="projects-grid" role="grid" aria-label="Project cards">
-                            <!-- Projects will be loaded here -->
+                            <!-- Projects will be loaded here dynamically -->
                         </div>
                     </div>
 
-                    <!-- Festival Lyric -->
+                    <!-- 
+                    Festival Lyric Quote
+                    Grateful Dead lyric that reinforces the spiritual/community
+                    aspect of festival culture. Breaks up commercial content
+                    with something meaningful to the target audience.
+                    -->
                     <blockquote class="stage-lyric">
                         "Once in a while you get shown the light, in the strangest of places if you look at it right..."
                     </blockquote>
                 </div>
             </section>
 
-            <!-- Stage 1: Vendor Row (Shop) -->
+            <!-- 
+            ===== STAGE 1: VENDOR ROW (SHOP) =====
+            E-commerce section for digital and physical products.
+            Uses "Vendor Row" metaphor from festival culture where
+            vendors sell goods along the main walkways.
+            -->
             <section id="stage-1" class="stage vendor-row" role="tabpanel" aria-labelledby="vendor-row-title" data-stage="vendor">
                 <div class="stage-content">
                     <header class="stage-header">
@@ -246,17 +409,28 @@
                         <p class="stage-subtitle">Cosmic knowledge for cosmic campsites</p>
                     </header>
 
+                    <!-- 
+                    Shop Grid Container
+                    Populated dynamically from shop.json.
+                    Contains books, guides, and other digital/physical products.
+                    -->
                     <div id="shopGrid" class="shop-grid">
-                        <!-- Shop items will be loaded here -->
+                        <!-- Shop items will be loaded here dynamically -->
                     </div>
 
+                    <!-- Another Grateful Dead lyric reference -->
                     <blockquote class="stage-lyric">
                         "What a long, strange trip it's been... and it's about to get even better!"
                     </blockquote>
                 </div>
             </section>
 
-            <!-- Stage 2: Chill Zone (About) -->
+            <!-- 
+            ===== STAGE 2: CHILL ZONE (ABOUT) =====
+            About page that explains the mission and values.
+            "Chill Zone" refers to relaxed areas at festivals where
+            people gather to rest and connect.
+            -->
             <section id="stage-2" class="stage chill-zone" role="tabpanel" aria-labelledby="chill-zone-title" data-stage="chill">
                 <div class="stage-content">
                     <header class="stage-header">
@@ -271,6 +445,11 @@
                         <h2>Where every campsite is a canvas</h2>
                         <p>JamCamping is your digital Shakedown Street - a place where festival culture, DIY spirit, and cosmic creativity collide. We're here to help you turn your next festival campout into a legendary, envy-worthy home base.</p>
                         
+                        <!-- 
+                        Features Grid
+                        Highlights the key value propositions of the site.
+                        Each feature uses festival-themed language and emojis.
+                        -->
                         <div class="features-grid">
                             <div class="feature-card">
                                 <div class="feature-emoji">🎸</div>
@@ -295,13 +474,18 @@
                         </div>
                     </div>
 
+                    <!-- Festival-themed motivational quote -->
                     <blockquote class="stage-lyric">
                         "Keep on truckin' with the coolest camp on the playa!"
                     </blockquote>
                 </div>
             </section>
 
-            <!-- Stage 3: Submit Tent -->
+            <!-- 
+            ===== STAGE 3: SUBMIT TENT =====
+            Community contribution form where users can submit their own projects.
+            "Submit Tent" plays on the idea of a submission booth at festivals.
+            -->
             <section id="stage-3" class="stage submit-tent" role="tabpanel" aria-labelledby="submit-tent-title" data-stage="submit">
                 <div class="stage-content">
                     <header class="stage-header">
@@ -312,7 +496,20 @@
                         <p class="stage-subtitle">Share your legendary builds with the family</p>
                     </header>
 
+                    <!-- 
+                    Project Submission Form
+                    Allows community members to contribute their own DIY projects.
+                    novalidate attribute lets us handle validation with JavaScript
+                    for better user experience and custom error messages.
+                    -->
                     <form id="submitForm" class="submit-form" novalidate>
+                        <!-- 
+                        Each form group contains:
+                        - Label with proper association to input
+                        - Input field with validation attributes
+                        - Error container for validation messages
+                        - ARIA describedby links input to error container
+                        -->
                         <div class="form-group">
                             <label for="projectName" class="form-label">Project Name</label>
                             <input type="text" id="projectName" name="projectName" class="form-input" required aria-describedby="projectName-error">
@@ -345,18 +542,25 @@
                             <div id="submitterEmail-error" class="form-error" role="alert"></div>
                         </div>
 
+                        <!-- Submit button with festival-themed text -->
                         <button type="submit" class="btn-festival btn-primary submit-btn">
                             🚀 Share the Magic
                         </button>
                     </form>
 
+                    <!-- Grateful Dead lyric about uncertainty and hope -->
                     <blockquote class="stage-lyric">
                         "Sometimes the light's all shinin' on me, other times I can barely see..."
                     </blockquote>
                 </div>
             </section>
 
-            <!-- Stage 4: Info Booth (Contact) -->
+            <!-- 
+            ===== STAGE 4: INFO BOOTH (CONTACT) =====
+            Contact information and creator story.
+            "Info Booth" references the information booths found at festivals
+            where attendees can get help and connect with organizers.
+            -->
             <section id="stage-4" class="stage info-booth" role="tabpanel" aria-labelledby="info-booth-title" data-stage="contact">
                 <div class="stage-content">
                     <header class="stage-header">
@@ -367,6 +571,10 @@
                         <p class="stage-subtitle">Connect with the cosmic community</p>
                     </header>
 
+                    <!-- 
+                    Contact Information Grid
+                    Simple, clean contact options with festival-themed descriptions.
+                    -->
                     <div class="contact-grid">
                         <div class="contact-card">
                             <div class="contact-emoji">📧</div>
@@ -380,11 +588,17 @@
                         </div>
                     </div>
 
+                    <!-- 
+                    Creator Story Section
+                    Personal story that builds trust and connection.
+                    Establishes credibility through specific background details.
+                    -->
                     <div class="creator-section">
                         <h2>About the Creator</h2>
                         <p>JamCamping is built by Josh Wakefield—electrical engineer, improvisational guitarist, sacred geometry artist, festival explorer, and serial experimenter. Born from two decades of jam band culture, deep DIY, and an obsession with helping people make their campsite an experience, not just a place to sleep.</p>
                     </div>
 
+                    <!-- Grateful Dead farewell lyric -->
                     <blockquote class="stage-lyric">
                         "Thanks for a real good time!"
                     </blockquote>
@@ -393,22 +607,44 @@
         </div>
     </main>
 
-    <!-- Floating Action Buttons -->
+    <!-- 
+    ===== FLOATING ACTION BUTTONS =====
+    Always-visible buttons for common actions.
+    Positioned in bottom-right corner for easy thumb access on mobile.
+    -->
     <div class="floating-actions">
+        <!-- 
+        Theme Toggle Button
+        Switches between light and dark modes.
+        Icon changes based on current theme (moon for light, sun for dark).
+        -->
         <button id="themeToggle" class="floating-btn theme-btn" title="Toggle theme" aria-label="Toggle dark/light theme">
             <span class="theme-icon">🌙</span>
         </button>
+        
+        <!-- 
+        Help Button
+        Opens email client for support requests.
+        Animated to draw attention and encourage engagement.
+        -->
         <button id="helpToggle" class="floating-btn help-btn" title="Need help?" aria-label="Get help">
             <span class="help-icon">❓</span>
         </button>
     </div>
 
-    <!-- Project Modal -->
+    <!-- 
+    ===== PROJECT MODAL =====
+    Overlay that shows detailed project information.
+    Hidden by default, shown when user clicks on a project card.
+    Contains full project details, parts lists, and purchase options.
+    -->
     <div id="projectModal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
         <div class="modal-backdrop"></div>
         <div class="modal-container">
             <div class="modal-content">
+                <!-- Close button in top-right corner -->
                 <button class="modal-close" aria-label="Close modal">&times;</button>
+                <!-- Content populated dynamically by JavaScript -->
                 <div id="modalBody" class="modal-body">
                     <!-- Project details will be loaded here -->
                 </div>
@@ -416,13 +652,23 @@
         </div>
     </div>
 
-    <!-- Cart Sidebar -->
+    <!-- 
+    ===== CART SIDEBAR =====
+    Slide-out panel showing cart contents and checkout options.
+    Slides in from the right when cart button is clicked.
+    Persists cart data in localStorage for session continuity.
+    -->
     <div id="cartSidebar" class="cart-sidebar" role="dialog" aria-labelledby="cart-title" aria-hidden="true">
         <div class="cart-header">
             <h2 id="cart-title">🛒 Your Festival Cart</h2>
             <button id="cartClose" class="cart-close" aria-label="Close cart">&times;</button>
         </div>
+        
         <div class="cart-content">
+            <!-- 
+            Cart Items Container
+            Shows empty state by default, populated when items are added.
+            -->
             <div id="cartItems" class="cart-items">
                 <div class="cart-empty">
                     <div class="empty-emoji">🎪</div>
@@ -430,6 +676,12 @@
                     <p class="empty-subtitle">Add some legendary builds!</p>
                 </div>
             </div>
+            
+            <!-- 
+            Cart Footer with Total and Checkout
+            Shows running total and main checkout button.
+            Button is disabled when cart is empty.
+            -->
             <div class="cart-footer">
                 <div class="cart-total">
                     <span class="total-label">Total:</span>
@@ -442,19 +694,33 @@
         </div>
     </div>
 
-    <!-- Social Proof Notifications -->
+    <!-- 
+    ===== SOCIAL PROOF NOTIFICATIONS =====
+    Container for showing "Someone just bought..." style notifications.
+    Uses aria-live to announce new notifications to screen readers.
+    aria-atomic ensures the entire message is read, not just changes.
+    -->
     <div id="socialProof" class="social-proof" aria-live="polite" aria-atomic="true"></div>
 
-    <!-- Inspiration Modal -->
+    <!-- 
+    ===== INSPIRATION MODAL =====
+    Shows motivational quotes and festival lyrics when "Get Inspired" is clicked.
+    Provides emotional connection and encourages continued engagement.
+    -->
     <div id="inspirationModal" class="inspiration-modal" role="dialog" aria-labelledby="inspiration-title" aria-hidden="true">
         <div class="inspiration-content">
             <h2 id="inspiration-title">🔥 Festival Inspiration 🔥</h2>
+            <!-- Quote text populated dynamically -->
             <blockquote id="inspirationText" class="inspiration-quote"></blockquote>
             <button class="btn-festival inspiration-close">Thanks for the vibes!</button>
         </div>
     </div>
 
-    <!-- Loading Overlay -->
+    <!-- 
+    ===== LOADING OVERLAY =====
+    Full-screen loading indicator shown during data fetching or processing.
+    Uses festival-themed messaging to maintain brand voice even during waits.
+    -->
     <div id="loadingOverlay" class="loading-overlay" aria-hidden="true">
         <div class="festival-loader">
             <div class="loader-emoji">🎪</div>
@@ -462,10 +728,19 @@
         </div>
     </div>
 
-    <!-- Menu Overlay -->
+    <!-- 
+    ===== MENU OVERLAY =====
+    Semi-transparent backdrop shown when navigation menu is open.
+    Clicking it closes the menu (common UX pattern).
+    -->
     <div id="menuOverlay" class="menu-overlay" aria-hidden="true"></div>
 
-    <!-- JavaScript -->
-    <script type="module" src="js/main.js"></script>
+    <!-- 
+    ===== MAIN JAVASCRIPT =====
+    Load the main application JavaScript file.
+    Contains all the interactive functionality, event handlers,
+    data loading, and dynamic content generation.
+    -->
+    <script src="js/main.js"></script>
 </body>
 </html>
