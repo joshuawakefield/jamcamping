@@ -123,15 +123,22 @@
         <section id="shop" class="content-section">
             <div class="shop-content">
                 <h1>Shop</h1>
-                <div class="coming-soon">
-                    <h2>🔥 Coming Soon</h2>
-                    <p>The best gear, eBooks, and exclusive JamCamping swag. Stay tuned!</p>
-                    <div class="newsletter-signup">
-                        <h3>Get notified when we launch</h3>
-                        <form class="signup-form">
-                            <input type="email" placeholder="your@email.com" required>
-                            <button type="submit">Notify Me</button>
-                        </form>
+                <p class="shop-intro">Legendary guides for legendary campsites. Digital downloads for instant inspiration, print editions for the tactile experience.</p>
+                
+                <div id="shopContainer" class="shop-container">
+                    <!-- Shop items will be loaded here dynamically -->
+                </div>
+                
+                <div class="shop-footer">
+                    <button class="back-to-projects-btn" data-section="projects">
+                        🎸 Back to DIY Projects
+                    </button>
+                    
+                    <div class="help-section">
+                        <p>Questions about your order?</p>
+                        <a href="mailto:jamcampinghq@gmail.com" class="help-link">
+                            📧 Get Help
+                        </a>
                     </div>
                 </div>
             </div>
@@ -206,6 +213,11 @@
     <!-- Floating Dark/Light Mode Toggle -->
     <button id="themeToggle" class="theme-toggle" title="Toggle dark/light mode">
         <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Floating Help Button -->
+    <button id="helpToggle" class="help-toggle" title="Need Help?">
+        <span class="help-icon">❓</span>
     </button>
 
     <!-- Sticky Bottom Action Bar -->

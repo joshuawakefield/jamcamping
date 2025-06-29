@@ -2,6 +2,7 @@
 class JamCampingApp {
     constructor() {
         this.projects = [];
+        this.shopItems = [];
         this.currentSection = 'about';
         this.theme = localStorage.getItem('jamcamping-theme') || 'light';
         
@@ -10,10 +11,12 @@ class JamCampingApp {
 
     async init() {
         await this.loadProjects();
+        await this.loadShopItems();
         this.setupEventListeners();
         this.applyTheme();
         this.showSection('about');
         this.renderProjects();
+        this.renderShopItems();
     }
 
     async loadProjects() {
@@ -23,6 +26,16 @@ class JamCampingApp {
         } catch (error) {
             console.error('Failed to load projects:', error);
             this.projects = [];
+        }
+    }
+
+    async loadShopItems() {
+        try {
+            const response = await fetch('shop.json');
+            this.shopItems = await response.json();
+        } catch (error) {
+            console.error('Failed to load shop items:', error);
+            this.shopItems = [];
         }
     }
 
@@ -65,6 +78,11 @@ class JamCampingApp {
             this.toggleTheme();
         });
 
+        // Help toggle
+        document.getElementById('helpToggle').addEventListener('click', () => {
+            window.open('mailto:jamcampinghq@gmail.com?subject=JamCamping Help Request', '_blank');
+        });
+
         // Bottom action bar
         document.getElementById('scrollToTop').addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -88,10 +106,6 @@ class JamCampingApp {
         });
 
         // Form submissions
-        document.querySelector('.signup-form')?.addEventListener('submit', (e) => {
-            this.handleNewsletterSignup(e);
-        });
-
         document.querySelector('.submit-form')?.addEventListener('submit', (e) => {
             this.handleProjectSubmission(e);
         });
@@ -191,6 +205,67 @@ class JamCampingApp {
                 this.showProjectModal(projectId);
             });
         });
+    }
+
+    renderShopItems() {
+        const container = document.getElementById('shopContainer');
+        if (!container || this.shopItems.length === 0) return;
+
+        container.innerHTML = this.shopItems.map(item => this.createProductCard(item)).join('');
+    }
+
+    createProductCard(product) {
+        const digitalFormats = product.digital.map(format => `
+            <div class="format-item">
+                <span class="format-name">${format.format}</span>
+                <span class="format-price">$${format.price}</span>
+                <a href="${format.buy_url}" target="_blank" class="buy-btn">Buy</a>
+            </div>
+        `).join('');
+
+        const printFormats = product.print.map(format => `
+            <div class="format-item">
+                <span class="format-name">${format.format}</span>
+                <span class="format-price">
+                    $${format.price}
+                    ${format.shipping ? '<span class="format-shipping">+ shipping</span>' : ''}
+                </span>
+                <a href="${format.buy_url}" target="_blank" class="buy-btn lulu-btn">Order on Lulu</a>
+            </div>
+        `).join('');
+
+        return `
+            <div class="product-card">
+                <div class="product-header">
+                    <div class="product-cover">${product.cover}</div>
+                    <h2 class="product-title">${product.title}</h2>
+                    <p class="product-description">${product.description}</p>
+                </div>
+
+                <div class="format-section">
+                    <h3>📱 Digital Formats</h3>
+                    <div class="format-list">
+                        ${digitalFormats}
+                    </div>
+                </div>
+
+                <div class="bundle-highlight">
+                    <div class="format-item">
+                        <span class="format-name">Bundle (${product.bundle.formats.join(', ')})</span>
+                        <span class="format-price">$${product.bundle.price}</span>
+                        <a href="${product.bundle.buy_url}" target="_blank" class="buy-btn bundle-btn">Get Bundle</a>
+                    </div>
+                    <div class="bundle-savings">Save $${product.bundle.savings}!</div>
+                </div>
+
+                <div class="format-section">
+                    <h3>📚 Print Formats</h3>
+                    <div class="format-list">
+                        ${printFormats}
+                    </div>
+                </div>
+            </div>
+        `;
     }
 
     createProjectCard(project) {
@@ -353,7 +428,9 @@ class JamCampingApp {
             "\"In the desert of ordinary camping, be an oasis of awesome.\"",
             "\"Once in a while you get shown the light, in the strangest of places if you look at it right.\"",
             "\"What a long, strange trip it's been... and it's about to get even better!\"",
-            "\"Keep on truckin' with the coolest camp on the playa!\""
+            "\"Keep on truckin' with the coolest camp on the playa!\"",
+            "\"Sometimes the light's all shinin' on me, other times I can barely see...\"",
+            "\"We're just walking each other home - might as well make the journey legendary!\""
         ];
 
         const randomInspiration = inspirations[Math.floor(Math.random() * inspirations.length)];
@@ -398,15 +475,6 @@ class JamCampingApp {
         });
     }
 
-    handleNewsletterSignup(e) {
-        e.preventDefault();
-        const email = e.target.querySelector('input[type="email"]').value;
-        
-        // Simulate signup
-        alert(`Thanks for signing up with ${email}! We'll notify you when the shop launches.`);
-        e.target.reset();
-    }
-
     handleProjectSubmission(e) {
         e.preventDefault();
         const formData = new FormData(e.target);
@@ -440,7 +508,7 @@ window.addEventListener('load', () => {
 });
 
 // Add some CSS for the inspiration modal
-const inspirationStyles = 
+const inspirationStyles = `
 .inspiration-modal {
     position: fixed;
     top: 0;

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "jamcamping-hacks",
+    "title": "The Art of JamCamping: Festival Camp Hacks & Magic",
+    "cover": "📖",
+    "description": "The ultimate DIY festival camp guide. 35+ legendary builds, sacred geometry vibes, and psychedelic hacks for the wild at heart. Transform your campsite into a cosmic basecamp that'll be the talk of the festival.",
+    "digital": [
+      { "format": "PDF", "price": "7.99", "buy_url": "https://buy.stripe.com/test-jamcamping-hacks-pdf" },
+      { "format": "ePub", "price": "7.99", "buy_url": "https://buy.stripe.com/test-jamcamping-hacks-epub" },
+      { "format": "MOBI", "price": "7.99", "buy_url": "https://buy.stripe.com/test-jamcamping-hacks-mobi" }
+    ],
+    "bundle": {
+      "formats": ["PDF", "ePub", "MOBI"],
+      "price": "12.99",
+      "savings": "2.98",
+      "buy_url": "https://buy.stripe.com/test-jamcamping-hacks-bundle"
+    },
+    "print": [
+      { "format": "Softcover", "price": "22.00", "buy_url": "https://lulu.com/jamcamping-hacks-softcover", "shipping": true },
+      { "format": "Hardcover", "price": "33.00", "buy_url": "https://lulu.com/jamcamping-hacks-hardcover", "shipping": true }
+    ]
+  },
+  {
+    "id": "jamcamping-cookbook",
+    "title": "JamCamping Cookbook: Legendary Meals for Psychedelic Campsites",
+    "cover": "🍄",
+    "description": "Feed your festival family with cosmic cuisine! 50+ recipes designed for camp kitchens, one-pot wonders, and meals that fuel the magic. From sunrise smoothie bowls to midnight munchie masterpieces.",
+    "digital": [
+      { "format": "PDF", "price": "9.99", "buy_url": "https://buy.stripe.com/test-jamcamping-cookbook-pdf" },
+      { "format": "ePub", "price": "9.99", "buy_url": "https://buy.stripe.com/test-jamcamping-cookbook-epub" },
+      { "format": "MOBI", "price": "9.99", "buy_url": "https://buy.stripe.com/test-jamcamping-cookbook-mobi" }
+    ],
+    "bundle": {
+      "formats": ["PDF", "ePub", "MOBI"],
+      "price": "15.99",
+      "savings": "3.98",
+      "buy_url": "https://buy.stripe.com/test-jamcamping-cookbook-bundle"
+    },
+    "print": [
+      { "format": "Softcover", "price": "27.00", "buy_url": "https://lulu.com/jamcamping-cookbook-softcover", "shipping": true },
+      { "format": "Hardcover", "price": "37.00", "buy_url": "https://lulu.com/jamcamping-cookbook-hardcover", "shipping": true }
+    ]
+  }
+]
