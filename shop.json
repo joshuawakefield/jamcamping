@@ -2,7 +2,7 @@
   {
     "id": "jamcamping-hacks",
     "title": "The Art of JamCamping: Festival Camp Hacks & Magic",
-    "cover": "📖",
+    "cover": "https://images.pexels.com/photos/1190298/pexels-photo-1190298.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop",
     "description": "The ultimate DIY festival camp guide. 35+ legendary builds, sacred geometry vibes, and psychedelic hacks for the wild at heart. Transform your campsite into a cosmic basecamp that'll be the talk of the festival.",
     "digital": [
       { "format": "PDF", "price": "7.99", "buy_url": "https://buy.stripe.com/test-jamcamping-hacks-pdf" },
@@ -23,7 +23,7 @@
   {
     "id": "jamcamping-cookbook",
     "title": "JamCamping Cookbook: Legendary Meals for Psychedelic Campsites",
-    "cover": "🍄",
+    "cover": "https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400&h=600&fit=crop",
     "description": "Feed your festival family with cosmic cuisine! 50+ recipes designed for camp kitchens, one-pot wonders, and meals that fuel the magic. From sunrise smoothie bowls to midnight munchie masterpieces.",
     "digital": [
       { "format": "PDF", "price": "9.99", "buy_url": "https://buy.stripe.com/test-jamcamping-cookbook-pdf" },

@@ -234,34 +234,44 @@ class JamCampingApp {
             </div>
         `).join('');
 
+        // Calculate bundle price for cover overlay
+        const bundlePrice = product.bundle.price;
+
         return `
             <div class="product-card">
-                <div class="product-header">
-                    <div class="product-cover">${product.cover}</div>
+                <div class="product-cover-container">
+                    <img src="${product.cover}" alt="${product.title}" class="product-cover">
+                    <div class="product-cover-overlay">
+                        <div class="product-cover-title">${product.title}</div>
+                        <div class="product-cover-price">From $${bundlePrice}</div>
+                    </div>
+                </div>
+                
+                <div class="product-content">
                     <h2 class="product-title">${product.title}</h2>
                     <p class="product-description">${product.description}</p>
-                </div>
 
-                <div class="format-section">
-                    <h3>📱 Digital Formats</h3>
-                    <div class="format-list">
-                        ${digitalFormats}
+                    <div class="bundle-highlight">
+                        <div class="format-item">
+                            <span class="format-name">Digital Bundle (${product.bundle.formats.join(', ')})</span>
+                            <span class="format-price">$${product.bundle.price}</span>
+                            <a href="${product.bundle.buy_url}" target="_blank" class="buy-btn bundle-btn">Get Bundle</a>
+                        </div>
+                        <div class="bundle-savings">Save $${product.bundle.savings}! Best value for all formats.</div>
                     </div>
-                </div>
 
-                <div class="bundle-highlight">
-                    <div class="format-item">
-                        <span class="format-name">Bundle (${product.bundle.formats.join(', ')})</span>
-                        <span class="format-price">$${product.bundle.price}</span>
-                        <a href="${product.bundle.buy_url}" target="_blank" class="buy-btn bundle-btn">Get Bundle</a>
+                    <div class="format-section">
+                        <h3>📱 Individual Digital Formats</h3>
+                        <div class="format-list">
+                            ${digitalFormats}
+                        </div>
                     </div>
-                    <div class="bundle-savings">Save $${product.bundle.savings}!</div>
-                </div>
 
-                <div class="format-section">
-                    <h3>📚 Print Formats</h3>
-                    <div class="format-list">
-                        ${printFormats}
+                    <div class="format-section">
+                        <h3>📚 Print Editions</h3>
+                        <div class="format-list">
+                            ${printFormats}
+                        </div>
                     </div>
                 </div>
             </div>
