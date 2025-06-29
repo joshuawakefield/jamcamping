@@ -440,7 +440,7 @@ window.addEventListener('load', () => {
 });
 
 // Add some CSS for the inspiration modal
-const inspirationStyles = `
+const inspirationStyles = 
 .inspiration-modal {
     position: fixed;
     top: 0;
