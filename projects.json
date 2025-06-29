@@ -1,0 +1,224 @@
+[
+  {
+    "id": 1,
+    "title": "Monkey Hut Shade Palace",
+    "description": "Build the ultimate festival shade structure with PVC pipes and tarps. This geodesic-inspired design provides maximum coverage with minimal footprint.",
+    "category": "shade",
+    "difficulty": "intermediate",
+    "image": "🏛️",
+    "problemSolved": "Scorching sun turning your campsite into a desert wasteland",
+    "buildTime": "4-6 hours",
+    "functionalParts": [
+      { "item": "PVC Pipes (1.5\" x 10ft)", "quantity": 8, "price": 12.99, "link": "#" },
+      { "item": "PVC Elbows", "quantity": 12, "price": 2.49, "link": "#" },
+      { "item": "Heavy Duty Tarp (12x16ft)", "quantity": 1, "price": 34.99, "link": "#" },
+      { "item": "Bungee Cords", "quantity": 10, "price": 15.99, "link": "#" },
+      { "item": "Ground Stakes", "quantity": 8, "price": 8.99, "link": "#" }
+    ],
+    "extravagantParts": [
+      { "item": "Aluminum Tubing (1.5\" x 10ft)", "quantity": 8, "price": 24.99, "link": "#" },
+      { "item": "Aircraft Cable Fittings", "quantity": 12, "price": 8.99, "link": "#" },
+      { "item": "Sunbrella Fabric (12x16ft)", "quantity": 1, "price": 89.99, "link": "#" },
+      { "item": "LED Strip Lighting", "quantity": 20, "price": 29.99, "link": "#" },
+      { "item": "Spiral Ground Anchors", "quantity": 8, "price": 19.99, "link": "#" },
+      { "item": "Misting System Kit", "quantity": 1, "price": 45.99, "link": "#" }
+    ],
+    "lyricEasterEgg": "\"Under the shade of a monkey hut, where the music never stops...\"",
+    "instructions": "Start by connecting your PVC pipes into a geodesic frame. Secure the tarp with bungee cords, ensuring proper tension. Stake down all corners and guy lines for stability."
+  },
+  {
+    "id": 2,
+    "title": "Swamp Cooler Tent A/C",
+    "description": "DIY evaporative cooling system that drops tent temperature by 15-20°F using just ice, water, and a fan.",
+    "category": "cooling",
+    "difficulty": "beginner",
+    "image": "❄️",
+    "problemSolved": "Sleeping in a tent that feels like a pizza oven",
+    "buildTime": "2-3 hours",
+    "functionalParts": [
+      { "item": "5-Gallon Bucket", "quantity": 1, "price": 8.99, "link": "#" },
+      { "item": "12V DC Fan", "quantity": 1, "price": 19.99, "link": "#" },
+      { "item": "Foam Padding", "quantity": 2, "price": 12.99, "link": "#" },
+      { "item": "PVC Pipe (4\" x 2ft)", "quantity": 1, "price": 6.99, "link": "#" },
+      { "item": "Water Pump", "quantity": 1, "price": 15.99, "link": "#" }
+    ],
+    "extravagantParts": [
+      { "item": "Insulated Cooler (48qt)", "quantity": 1, "price": 79.99, "link": "#" },
+      { "item": "Variable Speed Fan", "quantity": 1, "price": 39.99, "link": "#" },
+      { "item": "Evaporative Media Pads", "quantity": 4, "price": 24.99, "link": "#" },
+      { "item": "Digital Temperature Controller", "quantity": 1, "price": 34.99, "link": "#" },
+      { "item": "Solar Panel Kit", "quantity": 1, "price": 89.99, "link": "#" },
+      { "item": "Flexible Ducting", "quantity": 10, "price": 18.99, "link": "#" }
+    ],
+    "lyricEasterEgg": "\"Cool down, cool down, the heat is on but we're staying cool...\"",
+    "instructions": "Cut holes in bucket for fan and air intake. Install foam padding around the interior. Set up water circulation system with pump. Add ice and water, turn on fan, and enjoy the cool breeze."
+  },
+  {
+    "id": 3,
+    "title": "LED Totem Light Show",
+    "description": "Programmable LED totem pole that syncs with music and helps your crew find camp in the dark.",
+    "category": "lighting",
+    "difficulty": "advanced",
+    "image": "🌈",
+    "problemSolved": "Getting lost in the festival maze and boring static lighting",
+    "buildTime": "6-8 hours",
+    "functionalParts": [
+      { "item": "PVC Pipe (2\" x 8ft)", "quantity": 1, "price": 14.99, "link": "#" },
+      { "item": "LED Strip (5m)", "quantity": 2, "price": 25.99, "link": "#" },
+      { "item": "Arduino Uno", "quantity": 1, "price": 22.99, "link": "#" },
+      { "item": "12V Battery Pack", "quantity": 1, "price": 29.99, "link": "#" },
+      { "item": "Diffusion Material", "quantity": 1, "price": 12.99, "link": "#" }
+    ],
+    "extravagantParts": [
+      { "item": "Carbon Fiber Tube", "quantity": 1, "price": 89.99, "link": "#" },
+      { "item": "Addressable LED Strip (5m)", "quantity": 3, "price": 45.99, "link": "#" },
+      { "item": "Raspberry Pi 4", "quantity": 1, "price": 75.99, "link": "#" },
+      { "item": "LiFePO4 Battery (100Ah)", "quantity": 1, "price": 299.99, "link": "#" },
+      { "item": "Sound Reactive Module", "quantity": 1, "price": 34.99, "link": "#" },
+      { "item": "Wireless DMX Controller", "quantity": 1, "price": 129.99, "link": "#" },
+      { "item": "Professional Diffusion Dome", "quantity": 1, "price": 49.99, "link": "#" }
+    ],
+    "lyricEasterEgg": "\"Let there be light, let there be music, let there be dancing all night...\"",
+    "instructions": "Wire LED strips to controller, program light patterns, install in diffusion tube, mount on telescoping pole, and power up for an epic light show that'll be visible from space."
+  },
+  {
+    "id": 4,
+    "title": "Camp Bar & Lounge Setup",
+    "description": "Portable tiki bar with built-in coolers, bottle storage, and ambient lighting for the ultimate festival hangout spot.",
+    "category": "comfort",
+    "difficulty": "intermediate",
+    "image": "🍹",
+    "problemSolved": "Nowhere to properly mix drinks and entertain friends at camp",
+    "buildTime": "5-7 hours",
+    "functionalParts": [
+      { "item": "Folding Table (6ft)", "quantity": 1, "price": 49.99, "link": "#" },
+      { "item": "Cooler (48qt)", "quantity": 2, "price": 39.99, "link": "#" },
+      { "item": "Bamboo Fencing", "quantity": 20, "price": 34.99, "link": "#" },
+      { "item": "String Lights", "quantity": 50, "price": 19.99, "link": "#" },
+      { "item": "Bar Stools (Folding)", "quantity": 4, "price": 79.99, "link": "#" }
+    ],
+    "extravagantParts": [
+      { "item": "Tiki Bar Kit (Bamboo)", "quantity": 1, "price": 199.99, "link": "#" },
+      { "item": "Built-in Cooler Drawers", "quantity": 2, "price": 89.99, "link": "#" },
+      { "item": "Thatched Roof Kit", "quantity": 1, "price": 129.99, "link": "#" },
+      { "item": "Tiki Torches", "quantity": 6, "price": 59.99, "link": "#" },
+      { "item": "Professional Bar Tools Set", "quantity": 1, "price": 79.99, "link": "#" },
+      { "item": "Bluetooth Sound System", "quantity": 1, "price": 149.99, "link": "#" },
+      { "item": "Adjustable Height Bar Stools", "quantity": 4, "price": 159.99, "link": "#" }
+    ],
+    "lyricEasterEgg": "\"Come on down to the camp bar, where the drinks are cold and the vibes are far out...\"",
+    "instructions": "Set up folding table as base, wrap with bamboo fencing, install coolers underneath, add lighting and decorative elements, set up seating area, and stock with your favorite festival beverages."
+  },
+  {
+    "id": 5,
+    "title": "Geodesic Dome Lounge",
+    "description": "Sacred geometry meets festival comfort in this stunning dome structure perfect for meditation, music, and magical moments.",
+    "category": "shade",
+    "difficulty": "advanced",
+    "image": "🔮",
+    "problemSolved": "Need a sacred space for deep conversations and cosmic connections",
+    "buildTime": "8-12 hours",
+    "functionalParts": [
+      { "item": "PVC Pipes (1\" x 10ft)", "quantity": 20, "price": 8.99, "link": "#" },
+      { "item": "PVC Connectors", "quantity": 35, "price": 24.99, "link": "#" },
+      { "item": "Clear Tarp", "quantity": 1, "price": 29.99, "link": "#" },
+      { "item": "Zip Ties", "quantity": 100, "price": 12.99, "link": "#" },
+      { "item": "Ground Cloth", "quantity": 1, "price": 19.99, "link": "#" }
+    ],
+    "extravagantParts": [
+      { "item": "Aluminum Geodesic Kit", "quantity": 1, "price": 399.99, "link": "#" },
+      { "item": "Transparent Dome Panels", "quantity": 20, "price": 189.99, "link": "#" },
+      { "item": "LED Constellation Kit", "quantity": 1, "price": 79.99, "link": "#" },
+      { "item": "Sacred Geometry Floor", "quantity": 1, "price": 149.99, "link": "#" },
+      { "item": "Meditation Cushions", "quantity": 8, "price": 199.99, "link": "#" },
+      { "item": "Crystal Sound Bowls", "quantity": 7, "price": 299.99, "link": "#" },
+      { "item": "Aromatherapy Diffuser", "quantity": 1, "price": 49.99, "link": "#" }
+    ],
+    "lyricEasterEgg": "\"In the dome of sacred space, where time and space embrace...\"",
+    "instructions": "Calculate geodesic angles, cut pipes to precise lengths, assemble frame using sacred geometry principles, cover with transparent material, add interior lighting and comfort elements for the ultimate cosmic experience."
+  },
+  {
+    "id": 6,
+    "title": "Solar Power Station",
+    "description": "Complete off-grid power solution to keep your devices charged and your camp electrified throughout the festival.",
+    "category": "power",
+    "difficulty": "intermediate",
+    "image": "⚡",
+    "problemSolved": "Dead phone, dead vibes - stay connected and powered up",
+    "buildTime": "3-4 hours",
+    "functionalParts": [
+      { "item": "100W Solar Panel", "quantity": 2, "price": 89.99, "link": "#" },
+      { "item": "12V Deep Cycle Battery", "quantity": 1, "price": 129.99, "link": "#" },
+      { "item": "Charge Controller", "quantity": 1, "price": 34.99, "link": "#" },
+      { "item": "Power Inverter (1000W)", "quantity": 1, "price": 79.99, "link": "#" },
+      { "item": "USB Charging Hub", "quantity": 1, "price": 24.99, "link": "#" }
+    ],
+    "extravagantParts": [
+      { "item": "400W Flexible Solar Panels", "quantity": 2, "price": 199.99, "link": "#" },
+      { "item": "LiFePO4 Battery (200Ah)", "quantity": 1, "price": 599.99, "link": "#" },
+      { "item": "MPPT Charge Controller", "quantity": 1, "price": 89.99, "link": "#" },
+      { "item": "Pure Sine Wave Inverter (2000W)", "quantity": 1, "price": 199.99, "link": "#" },
+      { "item": "Battery Monitor System", "quantity": 1, "price": 79.99, "link": "#" },
+      { "item": "Portable Power Station Case", "quantity": 1, "price": 149.99, "link": "#" },
+      { "item": "Wireless Charging Pads", "quantity": 4, "price": 99.99, "link": "#" }
+    ],
+    "lyricEasterEgg": "\"Solar power, flower power, keeping the energy flowing every hour...\"",
+    "instructions": "Mount solar panels for optimal sun exposure, connect to charge controller and battery bank, wire inverter for AC power, set up charging stations, and monitor system performance for reliable festival power."
+  },
+  {
+    "id": 7,
+    "title": "Misting Station Paradise",
+    "description": "High-pressure misting system that creates a refreshing oasis and rainbow light shows when the sun hits just right.",
+    "category": "cooling",
+    "difficulty": "beginner",
+    "image": "💦",
+    "problemSolved": "Overheating in the desert sun with no relief in sight",
+    "buildTime": "2-3 hours",
+    "functionalParts": [
+      { "item": "Garden Hose (50ft)", "quantity": 1, "price": 29.99, "link": "#" },
+      { "item": "Misting Nozzles", "quantity": 10, "price": 19.99, "link": "#" },
+      { "item": "PVC Pipe (1/2\" x 20ft)", "quantity": 1, "price": 12.99, "link": "#" },
+      { "item": "Water Pressure Pump", "quantity": 1, "price": 49.99, "link": "#" },
+      { "item": "Water Tank (5 gallon)", "quantity": 1, "price": 24.99, "link": "#" }
+    ],
+    "extravagantParts": [
+      { "item": "High-Pressure Pump System", "quantity": 1, "price": 199.99, "link": "#" },
+      { "item": "Stainless Steel Misting Line", "quantity": 50, "price": 89.99, "link": "#" },
+      { "item": "Anti-Drip Misting Nozzles", "quantity": 20, "price": 79.99, "link": "#" },
+      { "item": "Insulated Water Tank (20 gallon)", "quantity": 1, "price": 149.99, "link": "#" },
+      { "item": "Timer Control System", "quantity": 1, "price": 59.99, "link": "#" },
+      { "item": "LED Misting Lights", "quantity": 10, "price": 49.99, "link": "#" },
+      { "item": "Decorative Misting Arch", "quantity": 1, "price": 129.99, "link": "#" }
+    ],
+    "lyricEasterEgg": "\"Mist and magic in the air, cooling vibes everywhere...\"",
+    "instructions": "Run misting line around camp perimeter, install nozzles every 3-4 feet, connect to high-pressure pump and water source, test system pressure, and enjoy your personal oasis with rainbow mist effects."
+  },
+  {
+    "id": 8,
+    "title": "Camp Kitchen Command Center",
+    "description": "Organized outdoor kitchen setup with prep space, storage, and cooking stations for feeding your festival family.",
+    "category": "comfort",
+    "difficulty": "intermediate",
+    "image": "🍳",
+    "problemSolved": "Chaotic meal prep and nowhere to properly cook for the crew",
+    "buildTime": "4-5 hours",
+    "functionalParts": [
+      { "item": "Folding Camp Table", "quantity": 2, "price": 39.99, "link": "#" },
+      { "item": "Portable Propane Stove", "quantity": 1, "price": 59.99, "link": "#" },
+      { "item": "Cooler (70qt)", "quantity": 1, "price": 79.99, "link": "#" },
+      { "item": "Storage Bins", "quantity": 4, "price": 29.99, "link": "#" },
+      { "item": "Camp Sink", "quantity": 1, "price": 49.99, "link": "#" }
+    ],
+    "extravagantParts": [
+      { "item": "Modular Camp Kitchen", "quantity": 1, "price": 299.99, "link": "#" },
+      { "item": "Dual Burner Stove System", "quantity": 1, "price": 149.99, "link": "#" },
+      { "item": "Electric Cooler (12V)", "quantity": 1, "price": 199.99, "link": "#" },
+      { "item": "Spice Rack Organizer", "quantity": 1, "price": 39.99, "link": "#" },
+      { "item": "Portable Dishwashing Station", "quantity": 1, "price": 89.99, "link": "#" },
+      { "item": "LED Task Lighting", "quantity": 3, "price": 59.99, "link": "#" },
+      { "item": "Weather Protection Canopy", "quantity": 1, "price": 79.99, "link": "#" }
+    ],
+    "lyricEasterEgg": "\"Cooking up some magic in the kitchen of love...\"",
+    "instructions": "Set up prep tables in L-shape configuration, organize storage by meal type, establish cooking and cleaning zones, install task lighting, and create a system that keeps your festival family well-fed and happy."
+  }
+]

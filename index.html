@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JamCamping - DIY Psychedelic Campsite Projects</title>
+    <meta name="description" content="The ultimate guide to DIY psychedelic campsite projects for music festival goers, vanlifers, and outdoor dreamers. Make your campsite legendary.">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Left Slide Menu -->
+    <nav id="leftMenu" class="slide-menu left-menu">
+        <div class="menu-header">
+            <h2>JamCamping</h2>
+            <button id="closeLeftMenu" class="close-btn">&times;</button>
+        </div>
+        <ul class="menu-list">
+            <li><a href="#about" data-section="about">About</a></li>
+            <li><a href="#projects" data-section="projects">Projects</a></li>
+            <li><a href="#shop" data-section="shop">Shop</a></li>
+            <li><a href="#submit" data-section="submit">Submit a Project</a></li>
+            <li><a href="#contact" data-section="contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Right Slide Menu (Quick Shop) -->
+    <nav id="rightMenu" class="slide-menu right-menu">
+        <div class="menu-header">
+            <h2>Quick Shop</h2>
+            <button id="closeRightMenu" class="close-btn">&times;</button>
+        </div>
+        <div class="quick-shop-content">
+            <p>Coming soon: Your selected items and instant checkout!</p>
+            <div id="cartItems" class="cart-items"></div>
+        </div>
+    </nav>
+
+    <!-- Menu Overlay -->
+    <div id="menuOverlay" class="menu-overlay"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <button id="menuToggle" class="menu-toggle">☰</button>
+        <h1 class="logo">JamCamping</h1>
+        <button id="shopToggle" class="shop-toggle">🛒</button>
+    </header>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="main-content">
+        <!-- About Section -->
+        <section id="about" class="content-section active">
+            <div class="hero">
+                <h1>Welcome to JamCamping</h1>
+                <p class="hero-subtitle">Where every campsite is a canvas and every project's got a little magic in it</p>
+                <p class="hero-description">We're on a mission to turn your next festival campout into a legendary, envy-worthy home base—one DIY hack at a time.</p>
+                <button class="cta-button" data-section="projects">Explore Projects</button>
+            </div>
+            
+            <div class="about-content">
+                <h2>What is JamCamping?</h2>
+                <p>JamCamping.com is your one-stop playground for DIY festival builds and campsite upgrades inspired by the jam band, burner, vanlife, prepper, survival, and glamping communities.</p>
+                
+                <div class="features-grid">
+                    <div class="feature">
+                        <h3>🎸 Festival-Ready Builds</h3>
+                        <p>Curated projects for music festival goers who want to stand out</p>
+                    </div>
+                    <div class="feature">
+                        <h3>📱 Mobile-First Design</h3>
+                        <p>Rapid inspiration—surf legendary ideas on any device</p>
+                    </div>
+                    <div class="feature">
+                        <h3>💰 Smart Shopping</h3>
+                        <p>Functional and Extravagant parts lists with instant affiliate links</p>
+                    </div>
+                    <div class="feature">
+                        <h3>✨ Psychedelic Spirit</h3>
+                        <p>Zero generic camping advice—every project curated for the festival vibe</p>
+                    </div>
+                </div>
+                
+                <blockquote class="lyric-quote">
+                    "Once in a while you get shown the light, in the strangest of places if you look at it right..."
+                </blockquote>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="content-section">
+            <div class="projects-header">
+                <h1>DIY Projects</h1>
+                <p>Scroll, swipe, and surf through the wildest, funnest, most original campsite projects anywhere. Every build is handpicked, every part has an instant affiliate link. Just tap to start your next upgrade.</p>
+                
+                <div class="filter-controls">
+                    <select id="categoryFilter">
+                        <option value="all">All Categories</option>
+                        <option value="shade">Shade & Shelter</option>
+                        <option value="lighting">Lighting</option>
+                        <option value="comfort">Comfort</option>
+                        <option value="power">Power & Tech</option>
+                        <option value="cooling">Cooling</option>
+                        <option value="storage">Storage</option>
+                    </select>
+                    
+                    <select id="difficultyFilter">
+                        <option value="all">All Levels</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="projectsContainer" class="projects-container">
+                <!-- Projects will be loaded here dynamically -->
+            </div>
+        </section>
+
+        <!-- Shop Section -->
+        <section id="shop" class="content-section">
+            <div class="shop-content">
+                <h1>Shop</h1>
+                <div class="coming-soon">
+                    <h2>🔥 Coming Soon</h2>
+                    <p>The best gear, eBooks, and exclusive JamCamping swag. Stay tuned!</p>
+                    <div class="newsletter-signup">
+                        <h3>Get notified when we launch</h3>
+                        <form class="signup-form">
+                            <input type="email" placeholder="your@email.com" required>
+                            <button type="submit">Notify Me</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Submit Section -->
+        <section id="submit" class="content-section">
+            <div class="submit-content">
+                <h1>Submit a Project</h1>
+                <p>Got a legendary campsite hack or DIY build? Share it with the JamCamping community!</p>
+                
+                <form class="submit-form">
+                    <div class="form-group">
+                        <label for="projectName">Project Name</label>
+                        <input type="text" id="projectName" name="projectName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projectDescription">Description</label>
+                        <textarea id="projectDescription" name="projectDescription" rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="projectCategory">Category</label>
+                        <select id="projectCategory" name="projectCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="shade">Shade & Shelter</option>
+                            <option value="lighting">Lighting</option>
+                            <option value="comfort">Comfort</option>
+                            <option value="power">Power & Tech</option>
+                            <option value="cooling">Cooling</option>
+                            <option value="storage">Storage</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="submitterEmail">Your Email</label>
+                        <input type="email" id="submitterEmail" name="submitterEmail" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Submit Project</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="content-section">
+            <div class="contact-content">
+                <h1>Contact</h1>
+                <p>Want to suggest a project, collab, or just say "thanks for a real good time?"</p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>📧 Email</h3>
+                        <a href="mailto:jamcampinghq@gmail.com">jamcampinghq@gmail.com</a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <h3>🐦 Twitter/X</h3>
+                        <a href="https://twitter.com/JamCampingHQ" target="_blank">@JamCampingHQ</a>
+                    </div>
+                </div>
+                
+                <div class="about-creator">
+                    <h2>About the Creator</h2>
+                    <p>JamCamping is built by Josh Wakefield—electrical engineer, improvisational guitarist, sacred geometry artist, festival explorer, and serial experimenter. Born from two decades of jam band culture, deep DIY, and an obsession with helping people make their campsite an experience, not just a place to sleep.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Floating Dark/Light Mode Toggle -->
+    <button id="themeToggle" class="theme-toggle" title="Toggle dark/light mode">
+        <span class="theme-icon">🌙</span>
+    </button>
+
+    <!-- Sticky Bottom Action Bar -->
+    <div class="bottom-action-bar">
+        <button id="scrollToTop" class="action-btn" title="Scroll to Top">
+            <span class="action-icon">⬆️</span>
+            <span class="action-label">Top</span>
+        </button>
+        
+        <button id="randomProject" class="action-btn" title="Random Project">
+            <span class="action-icon">✨</span>
+            <span class="action-label">Random</span>
+        </button>
+        
+        <button id="getInspired" class="action-btn" title="Get Inspired">
+            <span class="action-icon">🔥</span>
+            <span class="action-label">Inspire</span>
+        </button>
+    </div>
+
+    <!-- Project Modal -->
+    <div id="projectModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close">&times;</button>
+            <div id="modalBody" class="modal-body">
+                <!-- Project details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
