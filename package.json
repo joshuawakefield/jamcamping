@@ -1,0 +1,57 @@
+{
+  "name": "jamcamping",
+  "version": "1.0.0",
+  "description": "Digital Shakedown Street for festival DIY projects",
+  "main": "src/index.html",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && npm run build:seo",
+    "build:seo": "node scripts/build-seo.js",
+    "preview": "vite preview",
+    "serve": "vite preview --port 3000",
+    "deploy": "npm run build && npm run deploy:netlify",
+    "deploy:netlify": "netlify deploy --prod --dir dist",
+    "clean": "rm -rf dist",
+    "lint": "eslint src --ext .js,.html",
+    "format": "prettier --write src/**/*.{js,css,html,json}",
+    "test": "vitest",
+    "analyze": "vite-bundle-analyzer dist"
+  },
+  "keywords": [
+    "festival",
+    "camping",
+    "diy",
+    "music-festival",
+    "psychedelic",
+    "grateful-dead",
+    "phish"
+  ],
+  "author": "Josh Wakefield <jamcampinghq@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joshuawakefield/jamcamping.git"
+  },
+  "homepage": "https://jamcamping.com",
+  "devDependencies": {
+    "vite": "^5.0.0",
+    "vite-bundle-analyzer": "^0.7.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "vitest": "^1.0.0",
+    "netlify-cli": "^17.0.0"
+  },
+  "dependencies": {
+    "workbox-window": "^7.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}
