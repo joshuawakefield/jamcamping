@@ -1,173 +1,22 @@
-
-  /**
-   * ===== JAMCAMPING PACKAGE CONFIGURATION =====
-   * 
-   * This package.json file defines the JamCamping project metadata,
-   * dependencies, and build scripts. It serves as the central configuration
-   * for npm/yarn package management and project automation.
-   * 
-   * PACKAGE STRUCTURE:
-   * - Project metadata and description
-   * - Build and development scripts
-   * - Production and development dependencies
-   * - Browser compatibility targets
-   * - Node.js version requirements
-   * 
-   * SCRIPT ORGANIZATION:
-   * - Development: Local development server with hot reload
-   * - Build: Production build with optimizations
-   * - Deploy: Automated deployment to hosting platforms
-   * - Quality: Linting, formatting, and testing
-   * - Utilities: Cleaning, analysis, and maintenance
-   */
-  
-  /**
-   * BASIC PROJECT INFORMATION
-   * 
-   * Core metadata that identifies the project and its purpose.
-   */
+{
   "name": "jamcamping",
   "version": "1.0.0",
   "description": "Digital Shakedown Street for festival DIY projects",
   "main": "src/index.html",
-  
-  /**
-   * NPM SCRIPTS
-   * 
-   * Automated commands for development, building, and deployment.
-   * These scripts provide a consistent interface for common tasks
-   * regardless of the underlying tools used.
-   */
   "scripts": {
-    /**
-     * DEVELOPMENT SCRIPTS
-     * 
-     * Commands for local development and testing.
-     */
-    
-    /**
-     * Development Server
-     * 
-     * Starts Vite development server with hot module replacement.
-     * Automatically reloads the browser when files change.
-     * Optimized for fast development iteration.
-     */
     "dev": "vite",
-    
-    /**
-     * Production Build
-     * 
-     * Creates optimized production build with SEO page generation.
-     * Two-step process: Vite build + custom SEO script.
-     * 
-     * BUILD PROCESS:
-     * 1. Vite processes and optimizes all source files
-     * 2. Custom script generates SEO-optimized static pages
-     * 3. Sitemap and structured data generation
-     * 4. Meta tag optimization for social sharing
-     */
     "build": "vite build && npm run build:seo",
-    
-    /**
-     * SEO Build Script
-     * 
-     * Generates SEO-optimized static pages for better search engine indexing.
-     * Creates individual pages for each project and shop item.
-     * Generates sitemap.xml and structured data.
-     */
     "build:seo": "node scripts/build-seo.js",
-    
-    /**
-     * Preview Production Build
-     * 
-     * Serves the production build locally for testing.
-     * Useful for verifying the build works correctly before deployment.
-     */
     "preview": "vite preview",
-    
-    /**
-     * DEPLOYMENT SCRIPTS
-     * 
-     * Commands for deploying to various hosting platforms.
-     */
-    
-    /**
-     * Local Preview Server
-     * 
-     * Serves production build on port 3000 for local testing.
-     * Simulates production environment without deploying.
-     */
     "serve": "vite preview --port 3000",
-    
-    /**
-     * Full Deployment Pipeline
-     * 
-     * Complete build and deploy process for production.
-     * Builds optimized version then deploys to Netlify.
-     */
     "deploy": "npm run build && npm run deploy:netlify",
-    
-    /**
-     * Netlify Deployment
-     * 
-     * Deploys built files to Netlify hosting platform.
-     * Requires Netlify CLI to be configured with site credentials.
-     */
     "deploy:netlify": "netlify deploy --prod --dir dist",
-    
-    /**
-     * MAINTENANCE SCRIPTS
-     * 
-     * Commands for project maintenance and optimization.
-     */
-    
-    /**
-     * Clean Build Directory
-     * 
-     * Removes the dist directory to ensure clean builds.
-     * Useful when build artifacts become corrupted or outdated.
-     */
     "clean": "rm -rf dist",
-    
-    /**
-     * Code Linting
-     * 
-     * Checks JavaScript and HTML files for code quality issues.
-     * Helps maintain consistent code style and catch potential bugs.
-     */
     "lint": "eslint src --ext .js,.html",
-    
-    /**
-     * Code Formatting
-     * 
-     * Automatically formats code according to project style guidelines.
-     * Ensures consistent formatting across all source files.
-     */
     "format": "prettier --write src/**/*.{js,css,html,json}",
-    
-    /**
-     * Test Runner
-     * 
-     * Runs unit tests using Vitest testing framework.
-     * Currently placeholder - tests can be added as project grows.
-     */
     "test": "vitest",
-    
-    /**
-     * Bundle Analysis
-     * 
-     * Analyzes the production build to identify optimization opportunities.
-     * Helps understand bundle size and dependency impact.
-     */
     "analyze": "vite-bundle-analyzer dist"
   },
-  
-  /**
-   * PROJECT KEYWORDS
-   * 
-   * Keywords for npm registry and search engine optimization.
-   * Helps people discover the project through relevant searches.
-   */
   "keywords": [
     "festival",
     "camping",
@@ -177,133 +26,30 @@
     "grateful-dead",
     "phish"
   ],
-  
-  /**
-   * AUTHOR INFORMATION
-   * 
-   * Project creator and contact information.
-   */
   "author": "Josh Wakefield <jamcampinghq@gmail.com>",
-  
-  /**
-   * LICENSE
-   * 
-   * MIT license allows free use, modification, and distribution.
-   * Encourages open source collaboration while protecting the author.
-   */
   "license": "MIT",
-  
-  /**
-   * REPOSITORY INFORMATION
-   * 
-   * Links to the source code repository for collaboration and issues.
-   */
   "repository": {
     "type": "git",
     "url": "https://github.com/joshuawakefield/jamcamping.git"
   },
-  
-  /**
-   * PROJECT HOMEPAGE
-   * 
-   * Main website URL for the project.
-   */
   "homepage": "https://jamcamping.com",
-  
-  /**
-   * DEVELOPMENT DEPENDENCIES
-   * 
-   * Tools and libraries needed only during development and building.
-   * These are not included in the final production bundle.
-   */
   "devDependencies": {
-    /**
-     * VITE BUILD TOOL
-     * 
-     * Modern build tool with fast development server and optimized builds.
-     * Provides hot module replacement and excellent developer experience.
-     */
     "vite": "^5.0.0",
-    
-    /**
-     * BUNDLE ANALYZER
-     * 
-     * Tool for analyzing bundle size and composition.
-     * Helps identify optimization opportunities and large dependencies.
-     */
     "vite-bundle-analyzer": "^0.7.0",
-    
-    /**
-     * CODE QUALITY TOOLS
-     * 
-     * ESLint for code linting and Prettier for code formatting.
-     * Maintains consistent code quality and style across the project.
-     */
     "eslint": "^8.0.0",
     "prettier": "^3.0.0",
-    
-    /**
-     * TESTING FRAMEWORK
-     * 
-     * Vitest for unit testing with excellent Vite integration.
-     * Fast test runner with modern features and TypeScript support.
-     */
     "vitest": "^1.0.0",
-    
-    /**
-     * DEPLOYMENT TOOL
-     * 
-     * Netlify CLI for automated deployment to Netlify hosting.
-     * Enables continuous deployment and preview deployments.
-     */
     "netlify-cli": "^17.0.0"
   },
-  
-  /**
-   * PRODUCTION DEPENDENCIES
-   * 
-   * Libraries that are included in the final production bundle.
-   * Keep this list minimal to reduce bundle size.
-   */
   "dependencies": {
-    /**
-     * SERVICE WORKER LIBRARY
-     * 
-     * Workbox provides service worker functionality for PWA features.
-     * Enables offline caching, background sync, and push notifications.
-     */
     "workbox-window": "^7.0.0"
   },
-  
-  /**
-   * BROWSER COMPATIBILITY
-   * 
-   * Defines which browsers the project should support.
-   * Used by build tools to determine necessary polyfills and transformations.
-   * 
-   * TARGETS:
-   * - > 1%: Browsers with more than 1% global usage
-   * - last 2 versions: Last 2 versions of all browsers
-   * - not dead: Exclude browsers without official support
-   * - not ie 11: Exclude Internet Explorer 11 (legacy browser)
-   */
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not dead",
     "not ie 11"
   ],
-  
-  /**
-   * NODE.JS VERSION REQUIREMENTS
-   * 
-   * Specifies minimum Node.js and npm versions required.
-   * Ensures compatibility with modern JavaScript features and build tools.
-   * 
-   * REQUIREMENTS:
-   * - Node.js 18+: Required for modern JavaScript features and Vite
-   * - npm 9+: Required for package-lock.json v3 and security features
-   */
   "engines": {
     "node": ">=18.0.0",
     "npm": ">=9.0.0"
