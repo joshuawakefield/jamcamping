@@ -34,12 +34,13 @@
   },
   "homepage": "https://jamcamping.com",
   "devDependencies": {
+    "eslint": "^8.0.0",
+    "netlify-cli": "^17.0.0",
+    "prettier": "^3.0.0",
+    "terser": "^5.43.1",
     "vite": "^5.0.0",
     "vite-bundle-analyzer": "^0.7.0",
-    "eslint": "^8.0.0",
-    "prettier": "^3.0.0",
-    "vitest": "^1.0.0",
-    "netlify-cli": "^17.0.0"
+    "vitest": "^1.0.0"
   },
   "dependencies": {
     "workbox-window": "^7.0.0"
