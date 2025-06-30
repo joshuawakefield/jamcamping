@@ -5,7 +5,8 @@
   "main": "src/index.html",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npm run build:seo",
+   "copy:data": "mkdir -p public/data && cp src/data/*.json public/data/",
+"build": "npm run copy:data && vite build && npm run build:seo",
     "build:seo": "node scripts/build-seo.js",
     "preview": "vite preview",
     "serve": "vite preview --port 3000",
