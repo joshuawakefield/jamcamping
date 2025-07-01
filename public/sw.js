@@ -53,7 +53,7 @@ const DYNAMIC_CACHE = 'jamcamping-dynamic-v1.0.0'; // Dynamic content cache
  * CACHE STRATEGY:
  * - Root path (/) for offline homepage access
  * - Core CSS and JavaScript for app functionality
- * - Essential data files for project and shop content
+ * - Essential data files for project and product content
  * - PWA manifest for app installation
  * 
  * NOTE: Keep this list minimal to avoid slow initial cache population.
@@ -64,7 +64,7 @@ const STATIC_FILES = [
   '/css/style.css',            // Core styles - required for proper display
   '/js/main.js',               // Main application logic
   '/data/projects.json',       // Project data - core content
-  '/data/shop.json',           // Shop data - core content
+  '/data/products.json',       // Product data - core content
   '/manifest.json'             // PWA manifest - required for installation
 ];
 

@@ -5,7 +5,7 @@
  * 
  * This Node.js script generates SEO-optimized static pages and metadata
  * for the JamCamping website. It runs after the main Vite build process
- * to create individual pages for each project and shop item.
+ * to create individual pages for each project and product item.
  * 
  * WHY THIS IS NECESSARY:
  * - Single Page Applications (SPAs) have poor SEO by default
@@ -14,7 +14,7 @@
  * - Structured data helps search engines understand content
  * 
  * WHAT THIS SCRIPT DOES:
- * 1. Generates individual HTML pages for each project and shop item
+ * 1. Generates individual HTML pages for each project and product item
  * 2. Creates optimized meta tags for each page (title, description, etc.)
  * 3. Adds structured data (JSON-LD) for rich search results
  * 4. Generates XML sitemap for search engine crawling
@@ -60,7 +60,7 @@ class SEOBuilder {
         
         // Data arrays to be populated from JSON files
         this.projects = [];                // Project data from projects.json
-        this.shopItems = [];               // Shop data from shop.json
+        this.products = [];                // Product data from products.json
         this.baseTemplate = '';            // Base HTML template for page generation
     }
 
@@ -73,7 +73,7 @@ class SEOBuilder {
      * BUILD PROCESS:
      * 1. Load data from JSON files
      * 2. Load base HTML template
-     * 3. Generate individual pages for projects and shop items
+     * 3. Generate individual pages for projects and product items
      * 4. Create XML sitemap for search engines
      * 5. Generate structured data for rich snippets
      */
@@ -102,30 +102,30 @@ class SEOBuilder {
     /**
      * DATA LOADING METHOD
      * 
-     * Loads project and shop data from JSON files.
+     * Loads project and product data from JSON files.
      * Provides error handling and validation for data integrity.
      * 
      * DATA SOURCES:
      * - projects.json: DIY project information
-     * - shop.json: Digital and physical product information
+     * - products.json: Digital and physical product information
      */
     async loadData() {
         try {
             const projectsPath = path.join(this.srcDir, 'data', 'projects.json');
-            const shopPath = path.join(this.srcDir, 'data', 'shop.json');
+            const productsPath = path.join(this.srcDir, 'data', 'products.json');
             
             // Read and parse JSON files
             this.projects = JSON.parse(fs.readFileSync(projectsPath, 'utf8'));
-            this.shopItems = JSON.parse(fs.readFileSync(shopPath, 'utf8'));
+            this.products = JSON.parse(fs.readFileSync(productsPath, 'utf8'));
             
-            console.log(`📊 Loaded ${this.projects.length} projects and ${this.shopItems.length} shop items`);
+            console.log(`📊 Loaded ${this.projects.length} projects and ${this.products.length} products`);
             
             // Validate data integrity
             if (this.projects.length === 0) {
                 console.warn('⚠️ No projects found - this may impact SEO');
             }
-            if (this.shopItems.length === 0) {
-                console.warn('⚠️ No shop items found - this may impact SEO');
+            if (this.products.length === 0) {
+                console.warn('⚠️ No products found - this may impact SEO');
             }
             
         } catch (error) {
@@ -154,12 +154,12 @@ class SEOBuilder {
     /**
      * PAGE GENERATION METHOD
      * 
-     * Creates individual HTML pages for each project and shop item.
+     * Creates individual HTML pages for each project and product item.
      * Each page gets its own URL, meta tags, and structured data.
      * 
      * URL STRUCTURE:
      * - Projects: /projects/{id}/index.html
-     * - Shop items: /shop/{id}/index.html
+     * - Products: /products/{id}/index.html
      * 
      * This structure enables clean URLs without file extensions.
      */
@@ -174,17 +174,17 @@ class SEOBuilder {
             await this.generateProjectPage(project);
         }
 
-        // Generate shop item pages
-        const shopDir = path.join(this.distDir, 'shop');
-        if (!fs.existsSync(shopDir)) {
-            fs.mkdirSync(shopDir, { recursive: true });
+        // Generate product pages
+        const productsDir = path.join(this.distDir, 'products');
+        if (!fs.existsSync(productsDir)) {
+            fs.mkdirSync(productsDir, { recursive: true });
         }
 
-        for (const item of this.shopItems) {
-            await this.generateShopPage(item);
+        for (const item of this.products) {
+            await this.generateProductPage(item);
         }
 
-        console.log(`📄 Generated ${this.projects.length + this.shopItems.length} SEO pages`);
+        console.log(`📄 Generated ${this.projects.length + this.products.length} SEO pages`);
     }
 
     /**
@@ -296,22 +296,22 @@ class SEOBuilder {
     }
 
     /**
-     * SHOP PAGE GENERATION
+     * PRODUCT PAGE GENERATION
      * 
-     * Creates an individual HTML page for a specific shop item.
+     * Creates an individual HTML page for a specific product item.
      * Similar to project pages but optimized for product content.
      * 
-     * @param {Object} item - Shop item data object from shop.json
+     * @param {Object} item - Product item data object from products.json
      */
-    async generateShopPage(item) {
-        // Create directory for this shop item
-        const itemDir = path.join(this.distDir, 'shop', item.id);
+    async generateProductPage(item) {
+        // Create directory for this product item
+        const itemDir = path.join(this.distDir, 'products', item.id);
         if (!fs.existsSync(itemDir)) {
             fs.mkdirSync(itemDir, { recursive: true });
         }
 
         // Generate SEO-optimized meta content
-        const title = `${item.title} - Festival Guide | JamCamping Shop`;
+        const title = `${item.title} - Festival Guide | JamCamping Products`;
         const description = item.description;
         const keywords = `${item.title}, festival guide, camping book, DIY manual`;
 
@@ -348,7 +348,7 @@ class SEOBuilder {
 
         // Write the generated HTML to file
         fs.writeFileSync(path.join(itemDir, 'index.html'), html);
-        console.log(`📄 Generated shop page: /shop/${item.id}`);
+        console.log(`📄 Generated product page: /products/${item.id}`);
     }
 
     /**
@@ -406,10 +406,10 @@ class SEOBuilder {
     /**
      * PRODUCT STRUCTURED DATA GENERATOR
      * 
-     * Creates Product structured data for shop items.
+     * Creates Product structured data for product items.
      * Enables e-commerce rich snippets with pricing and availability.
      * 
-     * @param {Object} item - Shop item data object
+     * @param {Object} item - Product item data object
      * @returns {Object} JSON-LD structured data object
      */
     generateProductStructuredData(item) {
@@ -485,10 +485,10 @@ class SEOBuilder {
             });
         });
 
-        // Add shop URLs
-        this.shopItems.forEach(item => {
+        // Add product URLs
+        this.products.forEach(item => {
             urls.push({
-                loc: `${baseUrl}/shop/${item.id}`,
+                loc: `${baseUrl}/products/${item.id}`,
                 priority: '0.7',                       // Medium-high priority for products
                 changefreq: 'monthly',                 // Products don't change often
                 lastmod: new Date().toISOString().split('T')[0]
