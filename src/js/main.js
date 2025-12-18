@@ -136,7 +136,7 @@ class JamCampingApp {
             // Load both JSON files in parallel for better performance
             const [projectsResponse, shopResponse] = await Promise.all([
                 fetch('/data/projects.json'),  // DIY project data
-                fetch('/data/shop.json')       // Shop product data
+                fetch('/data/products.json')       // Shop product data
             ]);
 
             // Check if both requests succeeded
@@ -1561,3 +1561,4 @@ if ('serviceWorker' in navigator) {
             });
     });
 }
+
