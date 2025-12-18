@@ -67,7 +67,8 @@ export default defineConfig({
    * 
    * Comprehensive build settings for production optimization.
    */
-  build: {
+build: {
+  manifest: true,
     /**
      * OUTPUT DIRECTORY
      * 
@@ -273,3 +274,4 @@ export default defineConfig({
     include: ['workbox-window']
   }
 });
+
