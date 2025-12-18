@@ -1,69 +1,66 @@
 /**
  * ===== JAMCAMPING SERVICE WORKER =====
  * 
- * Updated service worker for reliable PWA functionality.
+ * Fully updated service worker to resolve caching issues with Vite hashed assets.
  * 
- * KEY CHANGES & IMPROVEMENTS:
- * - Version bumped to force full cache refresh and clear old/stale caches
- * - Removed hardcoded unhashed file list (prevents requesting old main.js/style.css)
- * - Runtime caching: Cache-first for all same-origin assets (including hashed JS/CSS)
- * - Aggressive old cache cleanup on activate
- * - Simplified strategies while preserving offline support
- * - Network-first fallback removed for non-existent /api/ paths
- * - Push & sync handlers preserved but simplified (they are optional and safe)
- * - Better offline fallback to cached index.html
+ * KEY FIXES & IMPROVEMENTS:
+ * - Version bumped to v4.0.0 for complete cache invalidation
+ * - Navigation requests (HTML pages): Network-first to always get fresh index.html with updated hashed asset references
+ * - Static assets (JS, CSS, JSON, images): Cache-first for performance, with runtime caching of new hashed files
+ * - Aggressive cleanup: Delete ALL old caches on activate
+ * - No hardcoded STATIC_FILES list (prevents requesting obsolete unhashed paths like main.js/style.css)
+ * - Offline fallback to cached root for navigation when truly offline
+ * - Simplified and robust strategies to prevent stale asset requests and 404s/cancels
+ * - Preserved push/sync placeholders for future expansion
  * 
  * SERVICE WORKER CAPABILITIES:
- * - Full offline access with instant loading of cached assets
- * - Automatic cache updates on new deploys
- * - Reliable handling of Vite's hashed assets
- * - Graceful offline experience at festivals with poor connectivity
+ * - Reliable updates: Fresh HTML on every navigation after deploy
+ * - Instant loading of cached assets
+ * - Full offline support for festival environments
+ * - Handles Vite's asset hashing perfectly
  * 
  * CACHING STRATEGY:
- * - Cache-first for all site assets (JS, CSS, JSON, images, fonts)
- * - Runtime caching ensures new hashed files are cached on first load
- * - Network fallback only when truly needed
- * - Offline fallback to root index.html
+ * - Navigation (HTML): Network-first → cache update → fallback to cached root offline
+ * - Everything else (same-origin): Cache-first → network fallback → cache new
  * 
- * @version 3.0.0
+ * @version 4.0.0
  * @scope /
  */
 
-const CACHE_VERSION = 'jamcamping-v3.0.0';
+const CACHE_VERSION = 'jamcamping-v4.0.0';
 const CACHE_NAME = `jamcamping-cache-${CACHE_VERSION}`;
 
 /**
  * INSTALL EVENT
  * 
- * On install, skip waiting to activate immediately.
- * No pre-caching of specific files - we rely on runtime caching for hashed assets.
+ * Open new cache and skip waiting for immediate activation.
  */
 self.addEventListener('install', (event) => {
-  console.log('🎪 JamCamping Service Worker: Installing new version...');
-  
+  console.log('🎪 JamCamping Service Worker: Installing v4.0.0...');
+
   event.waitUntil(
-    // Open the new cache (empty for now)
     caches.open(CACHE_NAME)
-      .then(() => {
-        console.log('✅ New cache created');
-        return self.skipWaiting();
+      .then((cache) => {
+        console.log('✅ New cache opened');
+        // Optionally pre-cache root for faster initial offline, but fetched fresh anyway
+        return cache.add('/');
       })
+      .then(() => self.skipWaiting())
   );
 });
 
 /**
  * ACTIVATE EVENT
  * 
- * Cleans up ALL old caches and claims clients immediately.
- * This ensures no stale assets (old main.js, style.css) are ever served again.
+ * Delete all old caches and claim clients.
+ * Ensures no stale caches interfere with new version.
  */
 self.addEventListener('activate', (event) => {
-  console.log('🚀 JamCamping Service Worker: Activating new version...');
+  console.log('🚀 JamCamping Service Worker: Activating v4.0.0...');
 
   event.waitUntil(
     caches.keys()
       .then((cacheNames) => {
-        console.log('🧹 Cleaning up old caches...');
         return Promise.all(
           cacheNames.map((cacheName) => {
             if (cacheName !== CACHE_NAME) {
@@ -74,7 +71,7 @@ self.addEventListener('activate', (event) => {
         );
       })
       .then(() => {
-        console.log('✅ Cache cleanup complete');
+        console.log('✅ All old caches removed');
         return self.clients.claim();
       })
   );
@@ -83,69 +80,87 @@ self.addEventListener('activate', (event) => {
 /**
  * FETCH EVENT
  * 
- * Core caching strategy: Cache-first for same-origin requests.
- * - Serve from cache instantly if available
- * - Otherwise fetch from network and cache the response
- * - Offline: serve cached version or fallback to index.html
+ * Smart caching based on request type.
  */
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
 
-  // Only cache same-origin requests (ignore external APIs/CDNs if needed)
-  if (url.origin === self.location.origin) {
-    event.respondWith(
-      caches.match(request)
-        .then((cachedResponse) => {
-          if (cachedResponse) {
-            console.log('⚡ Serving from cache:', url.pathname);
-            return cachedResponse;
-          }
+  // Only handle same-origin requests
+  if (url.origin !== self.location.origin) {
+    return;
+  }
 
-          // Not cached - fetch from network
-          return fetch(request)
-            .then((networkResponse) => {
-              // Cache successful responses (skip large/external if desired)
-              if (networkResponse && networkResponse.status === 200 && networkResponse.type === 'basic') {
-                const responseClone = networkResponse.clone();
-                caches.open(CACHE_NAME)
-                  .then((cache) => {
-                    console.log('💾 Caching new asset:', url.pathname);
-                    cache.put(request, responseClone);
-                  });
-              }
-              return networkResponse;
-            })
-            .catch(() => {
-              // Offline fallback for navigation requests
-              if (request.mode === 'navigate') {
-                console.log('📱 Offline - serving fallback index.html');
-                return caches.match('/');
-              }
-              throw new Error('Offline and no cache');
+  // Navigation requests (HTML pages) - Network first for fresh content
+  if (request.mode === 'navigate') {
+    event.respondWith(
+      fetch(request)
+        .then((networkResponse) => {
+          // Cache the fresh response
+          const responseClone = networkResponse.clone();
+          caches.open(CACHE_NAME)
+            .then((cache) => {
+              console.log('💾 Caching fresh navigation:', url.pathname);
+              cache.put(request, responseClone);
             });
+          return networkResponse;
+        })
+        .catch(() => {
+          // Offline - serve cached root
+          console.log('📱 Offline navigation - serving cached root');
+          return caches.match('/');
         })
     );
+    return;
   }
+
+  // All other requests (assets, JSON, etc.) - Cache first
+  event.respondWith(
+    caches.match(request)
+      .then((cachedResponse) => {
+        if (cachedResponse) {
+          console.log('⚡ Serving from cache:', url.pathname);
+          return cachedResponse;
+        }
+
+        // Not cached - fetch and cache
+        return fetch(request)
+          .then((networkResponse) => {
+            if (networkResponse && networkResponse.status === 200) {
+              const responseClone = networkResponse.clone();
+              caches.open(CACHE_NAME)
+                .then((cache) => {
+                  console.log('💾 Caching new asset:', url.pathname);
+                  cache.put(request, responseClone);
+                });
+            }
+            return networkResponse;
+          })
+          .catch((error) => {
+            console.error('❌ Fetch failed:', url.pathname, error);
+            throw error;
+          });
+      })
+  );
 });
 
 /**
- * BACKGROUND SYNC EVENT (preserved for future use)
+ * BACKGROUND SYNC EVENT (placeholder for future offline actions)
  */
 self.addEventListener('sync', (event) => {
   console.log('🔄 Background sync triggered:', event.tag);
-  // Placeholder - extend when real offline actions are implemented
+  // Implement real sync logic when needed
 });
 
 /**
- * PUSH NOTIFICATION EVENT (preserved for future use)
+ * PUSH NOTIFICATION EVENT (placeholder)
  */
 self.addEventListener('push', (event) => {
   console.log('📢 Push notification received');
-  
-  const title = 'JamCamping';
+
+  const title = 'JamCamping Update';
   const options = {
-    body: 'New festival projects and cosmic vibes await! 🎪',
+    body: 'New cosmic builds and festival magic await! 🎪',
     icon: '/icons/icon-192x192.png',
     badge: '/icons/badge-72x72.png',
     vibrate: [100, 50, 100],
@@ -158,7 +173,7 @@ self.addEventListener('push', (event) => {
 });
 
 /**
- * NOTIFICATION CLICK EVENT (preserved)
+ * NOTIFICATION CLICK EVENT
  */
 self.addEventListener('notificationclick', (event) => {
   console.log('👆 Notification clicked');
@@ -177,7 +192,7 @@ self.addEventListener('error', (event) => {
 });
 
 self.addEventListener('unhandledrejection', (event) => {
-  console.error('🚨 Unhandled Promise Rejection:', event.reason);
+  console.error('🚨 Unhandled Rejection:', event.reason);
 });
 
-console.log('🎪 JamCamping Service Worker: Ready (v3.0.0)');
+console.log('🎪 JamCamping Service Worker v4.0.0 loaded and ready');
