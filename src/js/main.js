@@ -29,7 +29,7 @@
  * @version 1.0.0
  * @since 2025
  */
-
+import '../css/style.css';
 /**
  * Main Application Class
  * 
@@ -1561,4 +1561,5 @@ if ('serviceWorker' in navigator) {
             });
     });
 }
+
 
